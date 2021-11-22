@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import SignInput from '../../components/SignInput';
+import { UserContext } from '../../contexts/UserContext';
+import Api from '../../Api';
+import { Alert } from 'react-native';
 import { 
   Container, 
   InputArea, 
@@ -14,7 +18,7 @@ import BarberLogo from '../../assets/barber.svg';
 import PersonIcon from '../../assets/person.svg';
 import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
-import Api from '../../Api';
+
 
 export default class SignUp extends Component<any, any> {
   state = {
@@ -23,17 +27,24 @@ export default class SignUp extends Component<any, any> {
     passwordField: ''
   }
 
+  static contextType = UserContext;
+
   async handleSignClick(){
     if(this.state.nameField === '' || this.state.emailField === '' || this.state.passwordField === ''){
-      alert("Preencha os campos");
+      Alert.alert("Ops!", "Preencha os campos");
       return;
     }
 
-    var response = await Api.signUp(this.state.nameField, this.state.emailField, this.state.passwordField);
-    if(!response.Success)
-      alert("Erro na requisição");
+    var response: any = await Api.signUp(this.state.nameField, this.state.emailField, this.state.passwordField);
+    if(!response.success)
+      Alert.alert("Ops!", "E-mail e/ou senha incorretos!");
 
-    console.log(response);
+    await AsyncStorage.setItem('token', response.data.token); 
+    await this.context.setAvatar(response.data.avatar);
+
+    this.props.navigation.reset({
+      routes: [{name: 'MainTab'}]
+    });
   }
 
   handleMessageButtonClick(){

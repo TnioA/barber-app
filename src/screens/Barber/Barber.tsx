@@ -42,12 +42,7 @@ export default class Barber extends Component<any, any> {
       Alert.alert("Ops!", response.error);
       return;
     }
-
-    response.data.photos = [
-      {url: "https://st2.depositphotos.com/2931363/9695/i/600/depositphotos_96952028-stock-photo-young-handsome-man-in-barbershop.jpg"},
-      {url: "https://st2.depositphotos.com/1001951/7898/i/600/depositphotos_78989850-stock-photo-hairstylist-washing-clients-hair-in.jpg"},
-      {url: "https://st2.depositphotos.com/2931363/10694/i/600/depositphotos_106949904-stock-photo-young-bearded-man-with-hairdresser.jpg"}
-    ];
+    
     this.setState({user: response.data});
   }
 

@@ -34,8 +34,10 @@ export default class SignIn extends Component<any, any> {
     }
 
     var response: any = await Api.signIn(this.state.emailField, this.state.passwordField);
-    if(!response.success)
-      Alert.alert("Ops!", "Erro na requisição");
+    if(!response.success){
+      Alert.alert("Ops!", response.error);
+      return;
+    }
 
     await AsyncStorage.setItem('token', response.data.token); 
     await this.context.setAvatar(response.data.avatar);

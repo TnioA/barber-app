@@ -41,9 +41,14 @@ const SeeProfileButtonText = styled.Text`
 `;
 
 export default class BarberItem extends Component<any, any> {
+
+  async handleClick(){
+    this.props.navigation.navigate('Barber', this.props.data);
+  }
+
   render() {
     return (
-      <Area>
+      <Area onPress={()=> this.handleClick()}>
         <Avatar source={{uri: this.props.data.avatar}} />
         <InfoArea>
           <UserName>{this.props.data.name}</UserName>

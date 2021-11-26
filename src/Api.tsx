@@ -71,4 +71,16 @@ export default new class Api {
     
     return await response.json();
   }
+
+  async favoriteBarber(barberId: number){
+    var token = await AsyncStorage.getItem('token');
+
+    const response = await fetch(`${BASE_API}/favoriteBarber`, {
+      method: 'POST',
+      headers: {'Authorization': token || '', 'Accept': 'application/json', 'Content-Type': 'application/json'},
+      body: JSON.stringify({barberId})
+    });
+    
+    return await response.json();
+  }
 }

@@ -42,7 +42,7 @@ const SeeProfileButtonText = styled.Text`
 
 export default class BarberItem extends Component<any, any> {
 
-  async handleClick(){
+  handleClick(){
     this.props.navigation.navigate('Barber', this.props.data);
   }
 

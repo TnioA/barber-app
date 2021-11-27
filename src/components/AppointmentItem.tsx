@@ -95,28 +95,28 @@ export default class BarberItem extends Component<any, any> {
             <UserInfoName>{this.props.data.barber.name}</UserInfoName>
           </UserInfo>
         </UserInfoArea>
-          <ServiceArea>            
-            <ServiceItem>
-              <ServiceInfo>
-                  <ServiceName>{this.props.data.service.name}</ServiceName>
-              </ServiceInfo>
-              <ServiceInfo>
-                  <ServicePrice>R$ {this.props.data.service.price}</ServicePrice>
-              </ServiceInfo>
-            </ServiceItem>        
-            <ServiceItem>
-              <DateButtomInfo>
-                <ServiceChooseButton>
-                  <ServiceChooseBtnText>{this.props.data.date.date}</ServiceChooseBtnText>
-                </ServiceChooseButton>         
-              </DateButtomInfo>
-              <HourButtomInfo>
-                <ServiceChooseButton>
-                  <ServiceChooseBtnText>{this.props.data.date.hour}</ServiceChooseBtnText>
-                </ServiceChooseButton>
-              </HourButtomInfo>             
-            </ServiceItem>
-          </ServiceArea>           
+        <ServiceArea>            
+          <ServiceItem>
+            <ServiceInfo>
+                <ServiceName>{this.props.data.service.name}</ServiceName>
+            </ServiceInfo>
+            <ServiceInfo>
+                <ServicePrice>R$ {this.props.data.service.price}</ServicePrice>
+            </ServiceInfo>
+          </ServiceItem>        
+          <ServiceItem>
+            <DateButtomInfo>
+              <ServiceChooseButton>
+                <ServiceChooseBtnText>{this.props.data.date.date}</ServiceChooseBtnText>
+              </ServiceChooseButton>         
+            </DateButtomInfo>
+            <HourButtomInfo>
+              <ServiceChooseButton>
+                <ServiceChooseBtnText>{this.props.data.date.hour}</ServiceChooseBtnText>
+              </ServiceChooseButton>
+            </HourButtomInfo>             
+          </ServiceItem>
+        </ServiceArea>           
       </Area>
     );
   }

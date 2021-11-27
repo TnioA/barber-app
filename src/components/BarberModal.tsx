@@ -236,7 +236,7 @@ export default class BarberModal extends Component<any, any> {
     let daysInMonthh = new Date(this.state.selectedYear, this.state.selectedMonth + 1, 0).getDate();
     var newListDays: any[] = [];
 
-    this.setState({dayList: newListDays});
+    
     for(let i = 1; i <= daysInMonthh; i++){
       let d = new Date(this.state.selectedYear, this.state.selectedMonth, i);
       let year = d.getFullYear();
@@ -254,8 +254,9 @@ export default class BarberModal extends Component<any, any> {
         number: i
       });
     }
-
-    this.setState({dayList: newListDays, hourList: [], selectedDay: 0, selectedHour: 0});
+    this.setState({dayList: []}, ()=> {
+      this.setState({dayList: newListDays, hourList: [], selectedDay: 0, selectedHour: 0});
+    });
   }
 
   changeHourList(){
@@ -299,8 +300,10 @@ export default class BarberModal extends Component<any, any> {
       day: this.state.selectedDay,
       hour: this.state.selectedHour
     });
-    if(!response.success)
+    if(!response.success){
       Alert.alert("Ops!", response.error);
+      return;
+    }
     
     this.props.setShow(false);
     this.props.navigation.navigate('Appointments');
@@ -316,7 +319,7 @@ export default class BarberModal extends Component<any, any> {
         <ModalArea>
           <ModalBody>
             <CloseButton onPress={()=> this.handleCloseButton()}>
-              <ExpandIcon width="40" height="40" fill="#000000"></ExpandIcon>
+              <ExpandIcon width="40" height="40" fill="#FFFFFF"></ExpandIcon>
             </CloseButton>
             <ModalItem>
               <BarberInfo>

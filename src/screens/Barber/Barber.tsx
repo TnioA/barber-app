@@ -149,7 +149,7 @@ export default class Barber extends Component<any, any> {
                   showsPagination={false}
                   showsButtons={true}
                   prevButton={<NavPrevIcon width="35" height="35" fill="#000000" />}
-                  nextButton={<NavPrevIcon width="35" height="35" fill="#000000" />}
+                  nextButton={<NavNextIcon width="35" height="35" fill="#000000" />}
                 >
                   {this.state.barber.testimonials.map((item: any, key: number)=> (
                     <TestimonialItem key={key}>

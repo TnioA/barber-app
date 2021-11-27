@@ -23,8 +23,8 @@ import BarberItem from '../../components/BarberItem';
 
 export default class Home extends Component<any, any> {
   state={
-    locationField: '',
-    coords: {},
+    locationField: undefined,
+    coords: { latitude: undefined, longitude: undefined },
     barberList: [],
     loading: false,
     refreshing: false
@@ -46,25 +46,18 @@ export default class Home extends Component<any, any> {
     if(result !== 'granted')
       return;
 
-    this.setState({loading: true, locationField: '', barberList: []});
+    this.setState({loading: true, locationField: undefined, barberList: []});
     Geolocation.getCurrentPosition((info)=> {
-      console.log(info);
-      this.setState({coords: info.coords});
-      this.getBarbers();
+      this.setState({coords: info.coords}, ()=> {
+        this.getBarbers();
+      });
     });
   }
 
   async getBarbers(){
     this.setState({loading: true, barberList: []});
 
-    var latitude = null;
-    var longitude = null;
-    // if(this.state.coords){
-    //   latitude = this.state.coords.latitude;
-    //   latitude = this.state.coords.longitude;
-    // }
-
-    var response = await Api.getBarbers(latitude, longitude, this.state.locationField);
+    var response = await Api.getBarbers(this.state.coords.latitude, this.state.coords.longitude, this.state.locationField);
     if(!response.success){
       this.setState({loading: false});
       Alert.alert('Ops!', 'Error'); 

@@ -50,10 +50,10 @@ export default new class Api {
     return await response.json();
   }
 
-  async getBarbers(latitude = null, longitude = null, location: string | null = null){
+  async getBarbers(latitude = null, longitude = null, location = null){
     var token = await AsyncStorage.getItem('token');
 
-    const response = await fetch(`${BASE_API}/getbarbers`, {
+    const response = await fetch(`${BASE_API}/getbarbers?location=${location}&latitude=${latitude}&longitude=${longitude}`, {
       method: 'GET',
       headers: {'Authorization': `Bearer ${token}`, 'Accept': 'application/json', 'Content-Type': 'application/json'}
     });

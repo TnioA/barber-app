@@ -60,7 +60,7 @@ export default class CustomTabBar extends Component<any, any> {
           <FavoriteIcon style={{opacity: this.props.state.index === 3 ? 1 : 0.5}} width="24" height="24" fill="#FFFFFF"></FavoriteIcon>
         </TabItem>
         <TabItem onPress={()=> this.goTo('Profile')}>
-          {this.context.avatar !== '' ?
+          {this.context.avatar && this.context.avatar !== '' ?
             <AvatarIcon source={{uri: this.context.avatar}}></AvatarIcon> :
             <AccountIcon style={{opacity: this.props.state.index === 4 ? 1 : 0.5}} width="24" height="24" fill="#FFFFFF"></AccountIcon>
           }

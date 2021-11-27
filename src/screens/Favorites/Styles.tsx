@@ -20,7 +20,7 @@ export const HeaderArea = styled.View`
 
 export const HeaderTitle = styled.Text`
     width: 240px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     color: #FFF;
 `;
@@ -33,7 +33,7 @@ export const ListArea = styled.View`
 export const BackButton = styled.TouchableOpacity`
     position: absolute;
     left: 0;
-    top: 10px;
+    top: 12px;
     z-index: 9;
 `;
 

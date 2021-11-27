@@ -1,10 +1,27 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { UserContext } from '../../contexts/UserContext';
 import React, { Component } from 'react';
-import { Button, Text } from 'react-native';
 import Api from '../../Api';
-import { Container } from './Styles';
+import { 
+  Container,
+  InputArea, 
+  CustomButton, 
+  CustomButtonText 
+} from './Styles';
 
 export default class Profile extends Component<any, any> {
+
+  state = {
+    name: 'Juremildo Souza',
+    email: 'juremo@hotmail.com'
+  }
+  static contextType = UserContext;
+
+  componentDidMount(){
+    console.log(this.context);
+    
+  }
+
   async handleLogoutClick(){
     await Api.logout();
 
@@ -17,8 +34,11 @@ export default class Profile extends Component<any, any> {
   render() {
     return (
       <Container>
-        <Text>Profile</Text>
-        <Button title="Sair" onPress={()=> this.handleLogoutClick()} />
+        <InputArea>
+          <CustomButton onPress={()=> this.handleLogoutClick()}>
+            <CustomButtonText>Sair</CustomButtonText>
+          </CustomButton>
+        </InputArea>
       </Container>
     );
   }

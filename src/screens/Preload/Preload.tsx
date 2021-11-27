@@ -28,6 +28,7 @@ export default class Preload extends Component<any, any> {
     }
 
     await AsyncStorage.setItem('token', response.data.token); 
+    await this.context.setToken(response.data.token);
     await this.context.setAvatar(response.data.avatar);
     this.props.navigation.reset({
       routes: [{name: 'MainTab'}]

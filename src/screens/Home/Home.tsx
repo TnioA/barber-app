@@ -110,8 +110,8 @@ export default class Home extends Component<any, any> {
           </LocationArea>
           {this.state.loading && <LoadingIcon size="large" color="#FFFFFF"></LoadingIcon>}
           <ListArea>
-            {this.state.barberList.map((x: any, index: any) => (
-              <BarberItem key={index} data={x} navigation={this.props.navigation} />
+            {this.state.barberList.map((x: any, key: number) => (
+              <BarberItem key={key} data={x} navigation={this.props.navigation} />
             ))}
           </ListArea>
         </Scroller>

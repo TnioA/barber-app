@@ -11,7 +11,6 @@ export default class Preload extends Component<any, any> {
   static contextType = UserContext;
 
   componentDidMount(){
-    
     this.checkToken();
   }
 
@@ -28,7 +27,7 @@ export default class Preload extends Component<any, any> {
       return;
     }
 
-    await AsyncStorage.setItem('token', response.data.token);
+    await AsyncStorage.setItem('token', response.data.token); 
     await this.context.setAvatar(response.data.avatar);
     this.props.navigation.reset({
       routes: [{name: 'MainTab'}]

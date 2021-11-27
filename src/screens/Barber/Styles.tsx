@@ -72,7 +72,7 @@ export const UserInfoName = styled.Text`
     color: #000000;
     font-size: 18px;
     font-weight: bold;
-    margin-botton: 10px;
+    margin-bottom: 10px;
 `;
 
 export const UserFavButton = styled.TouchableOpacity`
@@ -170,7 +170,7 @@ export const BackButton = styled.TouchableOpacity`
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 9px;
+    z-index: 9;
 `;
 
 export const LoadingIcon = styled.ActivityIndicator`

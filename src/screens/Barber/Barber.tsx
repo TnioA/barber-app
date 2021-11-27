@@ -76,16 +76,14 @@ export default class Barber extends Component<any, any> {
   }
 
   async handleFavClick(){
-    // var response = await Api.favoriteBarber(this.state.barber.id);
-    // if(!response.success)
-    //   return;
-
+    var response = await Api.favoriteBarber(this.state.barber.id, !this.state.favorited);
+    if(!response.success)
+      return;
+      
     this.setState({ favorited: !this.state.favorited});
   }
 
   handleServiceChoose(key: any){
-
-    console.log("bosta", key);
     this.setState({selectedService: key, showModal: true});
   }
 
@@ -101,7 +99,7 @@ export default class Barber extends Component<any, any> {
               paginationStyle={{top: 15, right: 15, bottom: undefined, left: undefined}}
               autoplay={true}
               >
-                {this.state.barber.photos.map((item: any, key: any)=> (
+                {this.state.barber.photos.map((item: any, key: number)=> (
                   <SwipeItem key={key}>
                     <SwipeImage source={{uri:item.url}} resizeMode="cover" />
                   </SwipeItem>
@@ -131,7 +129,7 @@ export default class Barber extends Component<any, any> {
             {this.state.barber.services && 
               <ServiceArea>            
                 <ServicesTitle>Lista de serviços</ServicesTitle>
-                {this.state.barber.services.map((item:any, key: any)=> (
+                {this.state.barber.services.map((item:any, key: number)=> (
                   <ServiceItem key={key}>
                     <ServiceInfo>
                       <ServiceName>{item.name}</ServiceName>
@@ -153,7 +151,7 @@ export default class Barber extends Component<any, any> {
                   prevButton={<NavPrevIcon width="35" height="35" fill="#000000" />}
                   nextButton={<NavPrevIcon width="35" height="35" fill="#000000" />}
                 >
-                  {this.state.barber.testimonials.map((item: any, key: any)=> (
+                  {this.state.barber.testimonials.map((item: any, key: number)=> (
                     <TestimonialItem key={key}>
                       <TestimonialInfo>
                         <TestimonialName>{item.name}</TestimonialName>
@@ -177,6 +175,7 @@ export default class Barber extends Component<any, any> {
           setShow={(e: any)=> this.setState({showModal: e})} 
           barber={this.state.barber}
           service={this.state.selectedService}
+          navigation={this.props.navigation}
         />
       </Container>
     );

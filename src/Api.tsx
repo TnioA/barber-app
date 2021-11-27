@@ -9,7 +9,7 @@ export default new class Api {
 
     const response = await fetch(`${BASE_API}/checktoken`, {
       method: 'POST',
-      headers: {'Authorization': token || '', 'Accept': 'application/json', 'Content-Type': 'application/json'},
+      headers: {'Authorization': `Bearer ${token}` || '', 'Accept': 'application/json', 'Content-Type': 'application/json'},
       body: JSON.stringify({token})
     });
     
@@ -41,9 +41,9 @@ export default new class Api {
   async logout(){
     var token = await AsyncStorage.getItem('token');
 
-    const response = await fetch(`${BASE_API}/signup`, {
+    const response = await fetch(`${BASE_API}/logout`, {
       method: 'POST',
-      headers: {'Authorization': token || '', 'Accept': 'application/json', 'Content-Type': 'application/json'},
+      headers: {'Authorization': `Bearer ${token}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
       body: JSON.stringify({})
     });
     
@@ -55,7 +55,7 @@ export default new class Api {
 
     const response = await fetch(`${BASE_API}/getbarbers`, {
       method: 'GET',
-      headers: {'Authorization': token || '', 'Accept': 'application/json', 'Content-Type': 'application/json'}
+      headers: {'Authorization': `Bearer ${token}`, 'Accept': 'application/json', 'Content-Type': 'application/json'}
     });
     
     return await response.json();
@@ -66,19 +66,53 @@ export default new class Api {
 
     const response = await fetch(`${BASE_API}/getbarber?id=${id}`, {
       method: 'GET',
-      headers: {'Authorization': token || '', 'Accept': 'application/json', 'Content-Type': 'application/json'}
+      headers: {'Authorization': `Bearer ${token}`, 'Accept': 'application/json', 'Content-Type': 'application/json'}
     });
     
     return await response.json();
   }
 
-  async favoriteBarber(barberId: number){
+  async favoriteBarber(barberId: number, state: boolean){
     var token = await AsyncStorage.getItem('token');
 
     const response = await fetch(`${BASE_API}/favoriteBarber`, {
       method: 'POST',
-      headers: {'Authorization': token || '', 'Accept': 'application/json', 'Content-Type': 'application/json'},
-      body: JSON.stringify({barberId})
+      headers: {'Authorization': `Bearer ${token}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
+      body: JSON.stringify({barberId, state: state})
+    });
+    
+    return await response.json();
+  }
+
+  async getFavoriteBarbers(){
+    var token = await AsyncStorage.getItem('token');
+
+    const response = await fetch(`${BASE_API}/getbarbers`, {
+      method: 'GET',
+      headers: {'Authorization': `Bearer ${token}`, 'Accept': 'application/json', 'Content-Type': 'application/json'}
+    });
+    
+    return await response.json();
+  }
+
+  async setAppointment(appontment: object){
+    var token = await AsyncStorage.getItem('token');
+
+    const response = await fetch(`${BASE_API}/setappointment`, {
+      method: 'POST',
+      headers: {'Authorization': `Bearer ${token}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
+      body: JSON.stringify(appontment)
+    });
+    
+    return await response.json();
+  }
+
+  async getAppointments(){
+    var token = await AsyncStorage.getItem('token');
+
+    const response = await fetch(`${BASE_API}/getappointments`, {
+      method: 'GET',
+      headers: {'Authorization': `Bearer ${token}`, 'Accept': 'application/json', 'Content-Type': 'application/json'}
     });
     
     return await response.json();

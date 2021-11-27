@@ -45,11 +45,11 @@ export default class Stars extends Component<any, any> {
   render() {
     return (
       <StarArea>
-        {this.state.stars.map((x, index)=> (
-          <StarView key={index}>
-            {x === 0 && <StarEmpty width="18" height="18" fill="#FF9200" />}
-            {x === 1 && <StarHalf width="18" height="18" fill="#FF9200" />}
-            {x === 2 && <StarFull width="18" height="18" fill="#FF9200" />}
+        {this.state.stars.map((item: any, key: number)=> (
+          <StarView key={key}>
+            {item === 0 && <StarEmpty width="18" height="18" fill="#FF9200" />}
+            {item === 1 && <StarHalf width="18" height="18" fill="#FF9200" />}
+            {item === 2 && <StarFull width="18" height="18" fill="#FF9200" />}
           </StarView>
           
         ))}

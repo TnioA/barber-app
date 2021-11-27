@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { Component } from 'react';
 import { Button, Text } from 'react-native';
 import Api from '../../Api';
@@ -6,6 +7,8 @@ import { Container } from './Styles';
 export default class Profile extends Component<any, any> {
   async handleLogoutClick(){
     await Api.logout();
+
+    await AsyncStorage.clear(); 
     this.props.navigation.reset({
       routes:[{name: 'SignIn'}]
     });

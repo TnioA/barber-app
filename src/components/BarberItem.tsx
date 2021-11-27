@@ -24,6 +24,7 @@ const InfoArea = styled.View`
 const UserName = styled.Text`
   font-size: 17px;
   font-weight: bold;
+  color: #000000;
 `;
 
 const SeeProfileButton = styled.View`

@@ -17,8 +17,8 @@ export default new class Api {
   }
 
   async signIn(email: string, password: string){
-    email = 'hortanio@hotmail.com';
-    password = '123';
+    // email = 'hortanio@hotmail.com';
+    // password = '123';
     const response = await fetch(`${BASE_API}/signin`, {
       method: 'POST',
       headers: {'Authorization': '', 'Accept': 'application/json', 'Content-Type': 'application/json'},

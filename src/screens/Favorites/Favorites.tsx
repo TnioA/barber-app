@@ -29,14 +29,14 @@ export default class Favorites extends Component<any, any> {
 
   async getFavoriteBarbers(){
     this.setState({loading: true, barberList: []});
-    var response = await Api.getFavoriteBarbers();
+    var response = await Api.getFavoritedBarbers();
     if(!response.success){
       this.setState({loading: false});
       Alert.alert('Ops!', 'Error'); 
       return;
     }
 
-    this.setState({barberList: response.data.barbers, loading: false});
+    this.setState({barberList: response.data, loading: false});
   }
 
   onRefresh(){

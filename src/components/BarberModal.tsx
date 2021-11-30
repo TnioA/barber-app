@@ -148,10 +148,6 @@ const TimeItemText = styled.Text`
   font-size: 16px;
 `;
 
-
-
-
-
 const months = [
   "Janeiro",
   "Fevereiro",
@@ -294,9 +290,9 @@ export default class BarberModal extends Component<any, any> {
 
     var response = await Api.setAppointment({
       barberId: this.props.barber.id,
-      serviceId: this.props.service,
+      serviceId: this.props.barber.services[this.props.service].id,
       year: this.state.selectedYear,
-      month: this.state.selectedMonth,
+      month: this.state.selectedMonth + 1,
       day: this.state.selectedDay,
       hour: this.state.selectedHour
     });

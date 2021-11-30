@@ -32,7 +32,7 @@ export default class Search extends Component<any, any> {
 
   async getBarbers(){
     this.setState({loading: true, barberList: []});
-    var response = await Api.getFavoriteBarbers();
+    var response = await Api.getBarbers();
     if(!response.success){
       this.setState({loading: false});
       Alert.alert('Ops!', 'Error'); 
@@ -40,8 +40,8 @@ export default class Search extends Component<any, any> {
     }
 
     this.setState({
-      barberList: response.data.barbers, 
-      principalBarberList: response.data.barbers, 
+      barberList: response.data, 
+      principalBarberList: response.data, 
       searchField: '',
       loading: false
     });

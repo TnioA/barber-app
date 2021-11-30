@@ -79,6 +79,7 @@ export default class Barber extends Component<any, any> {
     var response = await Api.favoriteBarber(this.state.barber.id, !this.state.favorited);
     if(!response.success)
       return;
+
       
     this.setState({ favorited: !this.state.favorited});
   }
@@ -101,7 +102,7 @@ export default class Barber extends Component<any, any> {
               >
                 {this.state.barber.photos.map((item: any, key: number)=> (
                   <SwipeItem key={key}>
-                    <SwipeImage source={{uri:item.url}} resizeMode="cover" />
+                    <SwipeImage source={{uri:item}} resizeMode="cover" />
                   </SwipeItem>
                 ))} 
               </Swiper> :

@@ -64,7 +64,7 @@ export default class Home extends Component<any, any> {
       return;
     }
 
-    this.setState({barberList: response.data.barbers, locationField: response.data.location, loading: false});
+    this.setState({barberList: response.data, locationField: response.data.location, loading: false});
   }
 
   onRefresh(){

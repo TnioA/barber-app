@@ -11,7 +11,8 @@ import {
   CustomButtonText, 
   SignMessageButton, 
   SignMessageButtonText, 
-  SignMessageButtonTextBold 
+  SignMessageButtonTextBold,
+  LoadingIcon
 } from './Styles';
 
 import BarberLogo from '../../assets/barber.svg';
@@ -22,26 +23,35 @@ export default class SignIn extends Component<any, any> {
   state = {
     emailField: '',
     passwordField: '',
-    appointments: null
+    appointments: null,
+    loading: false
   }
 
   static contextType = UserContext;
 
   async handleSignClick(){
+    if(this.state.loading) 
+      return;
+
     if(this.state.emailField === '' || this.state.passwordField === ''){
       Alert.alert("Ops!", "Preencha os campos");
       return;
     }
-
+    
+    this.setState({loading: true});
     var response: any = await Api.signIn(this.state.emailField, this.state.passwordField);
     if(!response.success){
-      Alert.alert("Ops!", response.error);
+      this.setState({loading: false}, ()=> {
+        Alert.alert("Ops!", response.error);
+      });
+      
       return;
     }
 
     await AsyncStorage.setItem('token', response.data.token); 
     await this.context.setAvatar(response.data.avatar);
 
+    this.setState({loading: false});
     this.props.navigation.reset({
       routes: [{name: 'MainTab'}]
     });
@@ -73,7 +83,7 @@ export default class SignIn extends Component<any, any> {
             />
 
             <CustomButton onPress={()=> this.handleSignClick()}>
-              <CustomButtonText>Login</CustomButtonText>
+              <CustomButtonText>{this.state.loading ? <LoadingIcon size="large" color="#FFFFFF"></LoadingIcon> : "Login"}</CustomButtonText>
             </CustomButton>
           </InputArea>
 

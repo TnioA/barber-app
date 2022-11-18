@@ -2,20 +2,40 @@ link de requisitos para ambiente mobile sem android studio
 
 https://medium.com/@vitaoloureiro/react-native-sem-instalar-o-android-studio-dff6c028e03b
 
+instalar versão do java jdk-17.0.1
+
+instalar a versão o cli do react native
+npm install -g react-native-cli
+
+baixar a versão do android sdk (somente linha de comando)
+bem no final da página você encontra a opção “Obtenha apenas as ferramentas de linha de comando”.
+https://developer.android.com/studio/index.html
+extrair o conteudo do zip para C:\Android\sdk
+
+
+dentro da pasta C:\Android\sdk\cmdline-tools\tools\bin
+
 link de instalação de emuladores usando avdmanager
 https://gist.github.com/mrk-han/66ac1a724456cadf1c93f4218c6060ae
 
-instalar versão do java jdk-17.0.1
+veja qual a ultima versão do android disponvivel
+sdkmanager --list | grep system-images
+
+baixe a ultima versão do android
+sdkmanager --install "system-images;android-30;aosp_atd;x86
+
+crie um novo dispositivo virtual
+echo no | avdmanager --verbose create avd --force --name my-emulator --package system-images;android-33;google_apis_playstore;x86_64 --abi "x86_64"
+
+para executar o emulador entre em C:\Android\sdk\emulator
+emulator -avd my-emulator
+
+
 
 senha da chave de teste de regação do build 123123
 
-
 link do passo a passo para geração do build
 https://reactnative.dev/docs/signed-apk-android
-
-
-
-
 
 
 
@@ -25,12 +45,12 @@ Por padrão existe um APK na pasta "...\android\app\build\outputs\apk\debug" que
 
 ---- Atualizar Gradle ----
 
-1) confira a versão atual do seu gradle
+1) confira a versão atual do seu gradle dentro da pasta ( Android )
 ./gradle --version
 ./gradlew --version
 
 2) No site "gradle.org/releases" confira a versão mais atual e digite o comando
-./gradlew wrapper --gradle-version 6.7.1 (ou a última versão disponível)
+./gradlew wrapper --gradle-version 6.9.3 (ou a última versão disponível)
 
 3) Digite novamente o comando "./gradlew --version" para completar o download e verificar a versão atualizada
 

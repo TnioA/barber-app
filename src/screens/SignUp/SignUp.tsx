@@ -11,7 +11,8 @@ import {
   CustomButtonText, 
   SignMessageButton, 
   SignMessageButtonText, 
-  SignMessageButtonTextBold 
+  SignMessageButtonTextBold,
+  LoadingIcon
 } from './Styles';
 
 import BarberLogo from '../../assets/barber.svg';
@@ -24,24 +25,32 @@ export default class SignUp extends Component<any, any> {
   state = {
     nameField: '',
     emailField: '',
-    passwordField: ''
+    passwordField: '',
+    loading: false
   }
 
   static contextType = UserContext;
 
   async handleSignClick(){
+    if(this.state.loading) 
+      return;
+
     if(this.state.nameField === '' || this.state.emailField === '' || this.state.passwordField === ''){
       Alert.alert("Ops!", "Preencha os campos");
       return;
     }
 
+    this.setState({loading: true});
     var response: any = await Api.signUp(this.state.nameField, this.state.emailField, this.state.passwordField);
     if(!response.success)
-      Alert.alert("Ops!", "E-mail e/ou senha incorretos!");
+      this.setState({loading: false}, ()=> {
+        Alert.alert("Ops!", "E-mail e/ou senha incorretos!");
+      });
 
     await AsyncStorage.setItem('token', response.data.token); 
     await this.context.setAvatar(response.data.avatar);
 
+    this.setState({loading: false});
     this.props.navigation.reset({
       routes: [{name: 'MainTab'}]
     });
@@ -79,7 +88,7 @@ export default class SignUp extends Component<any, any> {
             />
 
             <CustomButton onPress={()=> this.handleSignClick()}>
-              <CustomButtonText>Cadastrar</CustomButtonText>
+              <CustomButtonText>{this.state.loading ? <LoadingIcon size="large" color="#FFFFFF"></LoadingIcon> : "Cadastrar"}</CustomButtonText>
             </CustomButton>
           </InputArea>
 

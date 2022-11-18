@@ -57,7 +57,7 @@ export default class Home extends Component<any, any> {
   async getBarbers(){
     this.setState({loading: true, barberList: []});
 
-    var response = await Api.getBarbers(this.state.coords.latitude, this.state.coords.longitude, this.state.locationField);
+    var response = await Api.getBarbers(this.state.coords?.latitude, this.state.coords?.longitude, this.state.locationField);
     if(!response.success){
       this.setState({loading: false});
       Alert.alert('Ops!', 'Error'); 

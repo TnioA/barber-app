@@ -30,6 +30,16 @@ export default class Appointments extends Component<any, any> {
       return;
     }
 
+    response.data = response.data.sort(function (a, b) {
+      if (new Date(`${a.date.date}T${a.date.hour}`) > new Date(`${b.date.date}T${b.date.hour}`)) {
+        return 1;
+      }
+      if (new Date(`${a.date.date}T${a.date.hour}`) < new Date(`${b.date.date}T${b.date.hour}`)) {
+        return -1;
+      }
+      return 0;
+    }).reverse();
+
     this.setState({appointmentList: response.data, loading: false});
   }
 

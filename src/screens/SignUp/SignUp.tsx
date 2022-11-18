@@ -42,11 +42,14 @@ export default class SignUp extends Component<any, any> {
 
     this.setState({loading: true});
     var response: any = await Api.signUp(this.state.nameField, this.state.emailField, this.state.passwordField);
-    if(!response.success)
+    if(!response.success){
       this.setState({loading: false}, ()=> {
         Alert.alert("Ops!", "E-mail e/ou senha incorretos!");
       });
 
+      return;
+    }
+    
     await AsyncStorage.setItem('token', response.data.token); 
     await this.context.setAvatar(response.data.avatar);
 

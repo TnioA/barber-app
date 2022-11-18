@@ -18,8 +18,6 @@ export default class Profile extends Component<any, any> {
   static contextType = UserContext;
 
   componentDidMount(){
-    console.log(this.context);
-    
   }
 
   async handleLogoutClick(){

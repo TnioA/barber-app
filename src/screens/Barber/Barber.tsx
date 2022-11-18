@@ -9,6 +9,7 @@ import {
   Scroller,
   PageBody,
   BackButton,
+  LoadingFavIcon,
   LoadingIcon,
 
   SwipeDot,
@@ -53,6 +54,7 @@ export default class Barber extends Component<any, any> {
     selectedService: null,
 
     showModal: false,
+    favLoading: true,
     loading: true
   }
 
@@ -64,11 +66,12 @@ export default class Barber extends Component<any, any> {
   async getBarberInfo(){
     var response = await Api.getBarber(this.state.barber.id);
     if(!response.success){
-      this.setState({loading: false});
+      this.setState({loading: false, favLoading: false});
       Alert.alert("Ops!", response.error);
       return;
     }
-    this.setState({barber: response.data, loading: false, favorited: response.data.favorited});
+    console.log(response.data);
+    this.setState({barber: response.data, loading: false, favLoading: false, favorited: response.data.favorited});
   }
 
   handleBackButton(){
@@ -76,11 +79,12 @@ export default class Barber extends Component<any, any> {
   }
 
   async handleFavClick(){
+    this.setState({favLoading: true});
     var response = await Api.favoriteBarber(this.state.barber.id, !this.state.favorited);
+    this.setState({favLoading: false});
     if(!response.success)
       return;
 
-      
     this.setState({ favorited: !this.state.favorited});
   }
 
@@ -112,15 +116,17 @@ export default class Barber extends Component<any, any> {
             <UserInfoArea>
               <UserAvatar source={{uri: this.state.barber.avatar}} />
               <UserInfo>
-
                 <UserInfoName>{this.state.barber.name}</UserInfoName>
                 <Stars stars={this.state.barber.stars} showNumber={true} />
               </UserInfo>
               <UserFavButton onPress={()=> this.handleFavClick()}>
-                {this.state.favorited ?
-                  <FavoriteFullIcon width="24" height="24" fill="#FF0000" />
+                {this.state.favLoading ? 
+                  <LoadingFavIcon width="24" height="24" color="#000000" /> 
                   :
-                  <FavoriteIcon width="24" height="24" fill="#FF0000" />
+                  this.state.favorited ?
+                    <FavoriteFullIcon width="24" height="24" fill="#FF0000" />
+                    :
+                    <FavoriteIcon width="24" height="24" fill="#FF0000" />
                 }
               </UserFavButton>
             </UserInfoArea>

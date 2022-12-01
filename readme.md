@@ -1,3 +1,5 @@
+PASSO A PASSO PARA CRIAÇÃO DE AMBIENTE SEM ANDROID STUDIO E BUILD ANDROID/IOS
+
 * Link de requisitos para ambiente mobile sem android studio
 https://medium.com/@vitaoloureiro/react-native-sem-instalar-o-android-studio-dff6c028e03b
 

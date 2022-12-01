@@ -36,7 +36,7 @@ hw.lcd.density = 480
 skin.name={{nome da skin desejada}}
 skin.path=C:\Android\sdk\platforms\android-31\skins\{{nome da pasta da skin scolhida}}
 
-OBS: na raiz do projeto há um .rar com várias skins disponíveis;
+OBS: na raiz do projeto há um .zip com várias skins disponíveis;
 
 * Para executar o emulador entre em C:\Android\sdk\emulator
 emulator -avd my-emulator

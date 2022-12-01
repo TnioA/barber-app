@@ -28,13 +28,13 @@ Para configurar o avd criado acima deve ser alterado o arquivo
 C:/users/{{nome-usuario}}/.android/avd/my-emulator.avd/config.ini
 
 Alterar estas linhas: 
-hw.lcd.height = 1024
-hw.lcd.width = 600
-hw.lcd.density = 480
+- hw.lcd.height = 1024
+- hw.lcd.width = 600
+- hw.lcd.density = 480
 
 Adicionar novas linhas:
-skin.name={{nome da skin desejada}}
-skin.path=C:\Android\sdk\platforms\android-31\skins\{{nome da pasta da skin scolhida}}
+- skin.name={{nome da skin desejada}}
+- skin.path=C:\Android\sdk\platforms\android-31\skins\{{nome da pasta da skin scolhida}}
 
 OBS: na raiz do projeto há um .zip com várias skins disponíveis;
 

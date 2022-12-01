@@ -1,44 +1,44 @@
 PASSO A PASSO PARA CRIAÇÃO DE AMBIENTE SEM ANDROID STUDIO E BUILD ANDROID/IOS
 
-* Link de requisitos para ambiente mobile sem android studio
+Link de requisitos para ambiente mobile sem android studio
 https://medium.com/@vitaoloureiro/react-native-sem-instalar-o-android-studio-dff6c028e03b
 
-* Instalar versão do java jdk-17.0.1 ou a mais recente
+Instalar versão do java jdk-17.0.1 ou a mais recente
 
-* Instalar a versão o cli do react native
+Instalar a versão o cli do react native
 npm install -g react-native-cli
 
-* Baixar a versão do android sdk (somente linha de comando), bem no final da página você encontra a opção “Obtenha apenas as ferramentas de linha de comando”.
+Baixar a versão do android sdk (somente linha de comando), bem no final da página você encontra a opção “Obtenha apenas as ferramentas de linha de comando”.
 https://developer.android.com/studio/index.html
-* Extrair o conteudo do zip para C:\Android\sdk dentro da pasta C:\Android\sdk\cmdline-tools\tools\bin
+Extrair o conteudo do zip para C:\Android\sdk dentro da pasta C:\Android\sdk\cmdline-tools\tools\bin
 
-* Link de instalação de emuladores usando avdmanager
+Link de instalação de emuladores usando avdmanager
 https://gist.github.com/mrk-han/66ac1a724456cadf1c93f4218c6060ae
 
-* Veja qual a ultima versão do android disponvivel
+Veja qual a ultima versão do android disponvivel
 sdkmanager --list | grep system-images
 
-* Baixe a ultima versão do android
+Baixe a ultima versão do android
 sdkmanager --install "system-images;android-30;aosp_atd;x86
 
-* Crie um novo dispositivo virtual
+Crie um novo dispositivo virtual
 echo no | avdmanager --verbose create avd --force --name my-emulator --package system-images;android-33;google_apis_playstore;x86_64 --abi "x86_64"
 
-* Para configurar o avd criado acima deve ser alterado o arquivo 
+Para configurar o avd criado acima deve ser alterado o arquivo 
 C:/users/{{nome-usuario}}/.android/avd/my-emulator.avd/config.ini
 
-* Alterar estas linhas: 
+Alterar estas linhas: 
 hw.lcd.height = 1024
 hw.lcd.width = 600
 hw.lcd.density = 480
 
-* Adicionar novas linhas:
+Adicionar novas linhas:
 skin.name={{nome da skin desejada}}
 skin.path=C:\Android\sdk\platforms\android-31\skins\{{nome da pasta da skin scolhida}}
 
 OBS: na raiz do projeto há um .zip com várias skins disponíveis;
 
-* Para executar o emulador entre em C:\Android\sdk\emulator
+Para executar o emulador entre em C:\Android\sdk\emulator
 emulator -avd my-emulator
 
 

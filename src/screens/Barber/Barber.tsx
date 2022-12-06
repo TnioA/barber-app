@@ -70,7 +70,7 @@ export default class Barber extends Component<any, any> {
       Alert.alert("Ops!", response.error);
       return;
     }
-    console.log(response.data);
+    
     this.setState({barber: response.data, loading: false, favLoading: false, favorited: response.data.favorited});
   }
 

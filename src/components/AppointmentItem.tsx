@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 
-const Area = styled.SafeAreaView`
+const Area = styled.View`
   background-color: #FFFFFF;
   flex: 1;
   margin-bottom: 20px;
@@ -68,7 +68,7 @@ const HourButtomInfo = styled.View`
   margin-top: 10px;
 `;
 
-const ServiceChooseButton = styled.TouchableOpacity`
+const ServiceChooseButton = styled.View`
   background-color: #4EADBE;
   border-radius: 10px;
   padding: 10px 15px;

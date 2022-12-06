@@ -22,7 +22,7 @@ export default class Appointments extends Component<any, any> {
   }
 
   async getAppointments(){
-    this.setState({loading: true, barberList: []});
+    this.setState({loading: true, appointmentList: []});
     var response = await Api.getAppointments();
     if(!response.success){
       this.setState({loading: false});

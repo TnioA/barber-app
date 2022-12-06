@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const BASE_API = 'https://barber-test-api.herokuapp.com/api';
+const BASE_API = 'https://barber-api-9hiu.onrender.com/api';
 
 export default new class Api {
 

@@ -6,6 +6,10 @@ export const Container = styled.SafeAreaView`
     background-color: #63c2D1;
 `;
 
+export const Content = styled.View`
+    flex: 1;
+`;
+
 export const Scroller = styled.ScrollView`
     flex: 1;
     padding: 20px;
@@ -23,6 +27,7 @@ export const HeaderTitle = styled.Text`
     font-size: 18px;
     font-weight: bold;
     color: #FFF;
+    margin-top: 8px;
 `;
 
 export const ListArea = styled.View`
@@ -33,7 +38,7 @@ export const ListArea = styled.View`
 export const BackButton = styled.TouchableOpacity`
     position: absolute;
     left: 0;
-    top: 12px;
+    top: 18px;
     z-index: 9;
 `;
 

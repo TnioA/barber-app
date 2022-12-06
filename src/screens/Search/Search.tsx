@@ -3,6 +3,7 @@ import { Alert, RefreshControl } from 'react-native';
 import Api from '../../Api';
 import {
   Container,
+  Content,
   Scroller,
   BackButton,
   
@@ -72,27 +73,29 @@ export default class Search extends Component<any, any> {
   render() {
     return (
       <Container>
-        <Scroller refreshControl={
-          <RefreshControl refreshing={this.state.refreshing} onRefresh={()=> this.onRefresh()} />
-        }>
-          <SearchArea>
-            <SearchInput 
-              placeholder="Digite o nome do barbeiro" 
-              placeholderTextColor="#FFFFFF" 
-              value={this.state.searchField}
-              onChangeText={(x: any)=> this.handleSearchBarber(x)}
-            />
-          </SearchArea>
-          {this.state.loading && <LoadingIcon size="large" color="#FFFFFF"></LoadingIcon>}
-          <ListArea>
-            {this.state.barberList.map((x: any, key: number) => (
-              <BarberItem key={key} data={x} navigation={this.props.navigation} />
-            ))}
-          </ListArea>
-        </Scroller>
-        <BackButton onPress={()=> this.handleBackButton()}>
-          <BackIcon width="44" height="44" fill="#FFFFFF" />
-        </BackButton>
+        <Content>
+          <Scroller refreshControl={
+            <RefreshControl refreshing={this.state.refreshing} onRefresh={()=> this.onRefresh()} />
+          }>
+            <SearchArea>
+              <SearchInput 
+                placeholder="Digite o nome do barbeiro" 
+                placeholderTextColor="#FFFFFF" 
+                value={this.state.searchField}
+                onChangeText={(x: any)=> this.handleSearchBarber(x)}
+              />
+            </SearchArea>
+            {this.state.loading && <LoadingIcon size="large" color="#FFFFFF"></LoadingIcon>}
+            <ListArea>
+              {this.state.barberList.map((x: any, key: number) => (
+                <BarberItem key={key} data={x} navigation={this.props.navigation} />
+              ))}
+            </ListArea>
+          </Scroller>
+          <BackButton onPress={()=> this.handleBackButton()}>
+            <BackIcon width="44" height="44" fill="#FFFFFF" />
+          </BackButton>
+        </Content>
       </Container>
     );
   }

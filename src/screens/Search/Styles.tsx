@@ -1,9 +1,14 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
     flex: 1;
     background-color: #63c2D1;
+`;
+
+export const Content = styled.View`
+    flex: 1;
 `;
 
 export const Scroller = styled.ScrollView`
@@ -23,10 +28,10 @@ export const SearchArea = styled.View`
 
 export const SearchInput = styled.TextInput`
     flex: 1;
-    margin: -5px;
+    margin: ${Platform.OS !== 'ios' && '-5px'};
     font-size: 14px;
     color: #FFFFFF;
-    padding-top: 10px;
+    padding-top: ${Platform.OS !== 'ios' && '10px'};
 `;
 
 export const ListArea = styled.View`

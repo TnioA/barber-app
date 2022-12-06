@@ -3,6 +3,7 @@ import { Alert, RefreshControl } from 'react-native';
 import Api from '../../Api';
 import {
   Container,
+  Content,
   Scroller,
   BackButton,
 
@@ -51,22 +52,24 @@ export default class Favorites extends Component<any, any> {
   render() {
     return (
       <Container>
-        <Scroller refreshControl={
-          <RefreshControl refreshing={this.state.refreshing} onRefresh={()=> this.onRefresh()} />
-        }>
-          <HeaderArea>
-            <HeaderTitle numberOfLines={2}>Favoritos</HeaderTitle>
-          </HeaderArea>
-          {this.state.loading && <LoadingIcon size="large" color="#FFFFFF"></LoadingIcon>}
-          <ListArea>
-            {this.state.barberList.map((x: any, key: number) => (
-              <BarberItem key={key} data={x} navigation={this.props.navigation} />
-            ))}
-          </ListArea>
-        </Scroller>
-        <BackButton onPress={()=> this.handleBackButton()}>
-          <BackIcon width="44" height="44" fill="#FFFFFF" />
-        </BackButton>
+        <Content>
+          <Scroller refreshControl={
+            <RefreshControl refreshing={this.state.refreshing} onRefresh={()=> this.onRefresh()} />
+          }>
+            <HeaderArea>
+              <HeaderTitle numberOfLines={2}>Favoritos</HeaderTitle>
+            </HeaderArea>
+            {this.state.loading && <LoadingIcon size="large" color="#FFFFFF"></LoadingIcon>}
+            <ListArea>
+              {this.state.barberList.map((x: any, key: number) => (
+                <BarberItem key={key} data={x} navigation={this.props.navigation} />
+              ))}
+            </ListArea>
+          </Scroller>
+          <BackButton onPress={()=> this.handleBackButton()}>
+            <BackIcon width="44" height="44" fill="#FFFFFF" />
+          </BackButton>
+        </Content>
       </Container>
     );
   }

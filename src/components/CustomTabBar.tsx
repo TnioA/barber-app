@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { UserContext } from '../contexts/UserContext';
 
@@ -9,7 +10,7 @@ import FavoriteIcon from '../assets/favorite.svg';
 import AccountIcon from '../assets/account.svg';
 
 const TabArea = styled.View`
-  height: 70px;
+  height: ${Platform.OS === 'ios' ? '70px' : '60px'};
   background-color: #4EADBE;
   flex-direction: row;
 `;

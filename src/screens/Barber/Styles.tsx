@@ -6,6 +6,10 @@ export const Container = styled.SafeAreaView`
     background-color: #FFFFFF;
 `;
 
+export const Content = styled.View`
+    flex: 1;
+`;
+
 export const Scroller = styled.ScrollView`
     flex: 1;
 `;

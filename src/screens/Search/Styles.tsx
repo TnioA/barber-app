@@ -28,10 +28,10 @@ export const SearchArea = styled.View`
 
 export const SearchInput = styled.TextInput`
     flex: 1;
-    margin: ${Platform.OS !== 'ios' && '-5px'};
+    margin: ${Platform.OS === 'ios' ? '0px' : '-5px'};
     font-size: 14px;
     color: #FFFFFF;
-    padding-top: ${Platform.OS !== 'ios' && '10px'};
+    padding-top: ${Platform.OS === 'ios' ? '0px' : '10px'};
 `;
 
 export const ListArea = styled.View`

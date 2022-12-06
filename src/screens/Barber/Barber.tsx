@@ -6,6 +6,7 @@ import Stars from '../../components/Stars';
 import BarberModal from '../../components/BarberModal';
 import { 
   Container,
+  Content,
   Scroller,
   PageBody,
   BackButton,
@@ -70,7 +71,7 @@ export default class Barber extends Component<any, any> {
       Alert.alert("Ops!", response.error);
       return;
     }
-    
+
     this.setState({barber: response.data, loading: false, favLoading: false, favorited: response.data.favorited});
   }
 
@@ -95,95 +96,97 @@ export default class Barber extends Component<any, any> {
   render() {
     return (
       <Container>
-        <Scroller>
-          {this.state.barber.photos && this.state.barber.photos.length > 0 ? 
-            <Swiper 
-              style={{height: 240}} 
-              dot={<SwipeDot />} 
-              activeDot={<SwipeDotActive />}
-              paginationStyle={{top: 15, right: 15, bottom: undefined, left: undefined}}
-              autoplay={true}
-              >
-                {this.state.barber.photos.map((item: any, key: number)=> (
-                  <SwipeItem key={key}>
-                    <SwipeImage source={{uri:item}} resizeMode="cover" />
-                  </SwipeItem>
-                ))} 
-              </Swiper> :
-            <FakeSwiper></FakeSwiper>
-          }
-          <PageBody>
-            <UserInfoArea>
-              <UserAvatar source={{uri: this.state.barber.avatar}} />
-              <UserInfo>
-                <UserInfoName>{this.state.barber.name}</UserInfoName>
-                <Stars stars={this.state.barber.stars} showNumber={true} />
-              </UserInfo>
-              <UserFavButton onPress={()=> this.handleFavClick()}>
-                {this.state.favLoading ? 
-                  <LoadingFavIcon width="24" height="24" color="#000000" /> 
-                  :
-                  this.state.favorited ?
-                    <FavoriteFullIcon width="24" height="24" fill="#FF0000" />
-                    :
-                    <FavoriteIcon width="24" height="24" fill="#FF0000" />
-                }
-              </UserFavButton>
-            </UserInfoArea>
-            {this.state.loading &&
-              <LoadingIcon size="large" color="#000000" />
-            }
-            {this.state.barber.services && 
-              <ServiceArea>            
-                <ServicesTitle>Lista de serviços</ServicesTitle>
-                {this.state.barber.services.map((item:any, key: number)=> (
-                  <ServiceItem key={key}>
-                    <ServiceInfo>
-                      <ServiceName>{item.name}</ServiceName>
-                      <ServicePrice>R$ {item.price.toFixed(2)}</ServicePrice>
-                    </ServiceInfo>
-                    <ServiceChooseButton onPress={()=> this.handleServiceChoose(key)}>
-                      <ServiceChooseBtnText>Agendar</ServiceChooseBtnText>
-                    </ServiceChooseButton>
-                  </ServiceItem>
-                ))}
-              </ServiceArea>
-            }
-            {this.state.barber.testimonials && this.state.barber.testimonials.length > 0 &&
-              <TestimonialArea>
-                <Swiper
-                  style={{height: 110}}
-                  showsPagination={false}
-                  showsButtons={true}
-                  prevButton={<NavPrevIcon width="35" height="35" fill="#000000" />}
-                  nextButton={<NavNextIcon width="35" height="35" fill="#000000" />}
+        <Content>
+          <Scroller>
+            {this.state.barber.photos && this.state.barber.photos.length > 0 ? 
+              <Swiper 
+                style={{height: 240}} 
+                dot={<SwipeDot />} 
+                activeDot={<SwipeDotActive />}
+                paginationStyle={{top: 15, right: 15, bottom: undefined, left: undefined}}
+                autoplay={true}
                 >
-                  {this.state.barber.testimonials.map((item: any, key: number)=> (
-                    <TestimonialItem key={key}>
-                      <TestimonialInfo>
-                        <TestimonialName>{item.name}</TestimonialName>
-                        <Stars stars={item.rate} showNumber={false} />
-                      </TestimonialInfo>
-                      <TestimonialBody>{item.body}</TestimonialBody>
-                    </TestimonialItem>
-
-                  ))}
-                </Swiper>
-              </TestimonialArea>
+                  {this.state.barber.photos.map((item: any, key: number)=> (
+                    <SwipeItem key={key}>
+                      <SwipeImage source={{uri:item}} resizeMode="cover" />
+                    </SwipeItem>
+                  ))} 
+                </Swiper> :
+              <FakeSwiper></FakeSwiper>
             }
-          </PageBody>
-        </Scroller>
-        <BackButton onPress={()=> this.handleBackButton()}>
-          <BackIcon width="44" height="44" fill="#FFFFFF" />
-        </BackButton>
+            <PageBody>
+              <UserInfoArea>
+                <UserAvatar source={{uri: this.state.barber.avatar}} />
+                <UserInfo>
+                  <UserInfoName>{this.state.barber.name}</UserInfoName>
+                  <Stars stars={this.state.barber.stars} showNumber={true} />
+                </UserInfo>
+                <UserFavButton onPress={()=> this.handleFavClick()}>
+                  {this.state.favLoading ? 
+                    <LoadingFavIcon width="24" height="24" color="#000000" /> 
+                    :
+                    this.state.favorited ?
+                      <FavoriteFullIcon width="24" height="24" fill="#FF0000" />
+                      :
+                      <FavoriteIcon width="24" height="24" fill="#FF0000" />
+                  }
+                </UserFavButton>
+              </UserInfoArea>
+              {this.state.loading &&
+                <LoadingIcon size="large" color="#000000" />
+              }
+              {this.state.barber.services && 
+                <ServiceArea>            
+                  <ServicesTitle>Lista de serviços</ServicesTitle>
+                  {this.state.barber.services.map((item:any, key: number)=> (
+                    <ServiceItem key={key}>
+                      <ServiceInfo>
+                        <ServiceName>{item.name}</ServiceName>
+                        <ServicePrice>R$ {item.price.toFixed(2)}</ServicePrice>
+                      </ServiceInfo>
+                      <ServiceChooseButton onPress={()=> this.handleServiceChoose(key)}>
+                        <ServiceChooseBtnText>Agendar</ServiceChooseBtnText>
+                      </ServiceChooseButton>
+                    </ServiceItem>
+                  ))}
+                </ServiceArea>
+              }
+              {this.state.barber.testimonials && this.state.barber.testimonials.length > 0 &&
+                <TestimonialArea>
+                  <Swiper
+                    style={{height: 110}}
+                    showsPagination={false}
+                    showsButtons={true}
+                    prevButton={<NavPrevIcon width="35" height="35" fill="#000000" />}
+                    nextButton={<NavNextIcon width="35" height="35" fill="#000000" />}
+                  >
+                    {this.state.barber.testimonials.map((item: any, key: number)=> (
+                      <TestimonialItem key={key}>
+                        <TestimonialInfo>
+                          <TestimonialName>{item.name}</TestimonialName>
+                          <Stars stars={item.rate} showNumber={false} />
+                        </TestimonialInfo>
+                        <TestimonialBody>{item.body}</TestimonialBody>
+                      </TestimonialItem>
 
-        <BarberModal 
-          show={this.state.showModal} 
-          setShow={(e: any)=> this.setState({showModal: e})} 
-          barber={this.state.barber}
-          service={this.state.selectedService}
-          navigation={this.props.navigation}
-        />
+                    ))}
+                  </Swiper>
+                </TestimonialArea>
+              }
+            </PageBody>
+          </Scroller>
+          <BackButton onPress={()=> this.handleBackButton()}>
+            <BackIcon width="44" height="44" fill="#FFFFFF" />
+          </BackButton>
+
+          <BarberModal 
+            show={this.state.showModal} 
+            setShow={(e: any)=> this.setState({showModal: e})} 
+            barber={this.state.barber}
+            service={this.state.selectedService}
+            navigation={this.props.navigation}
+          />
+        </Content>
       </Container>
     );
   }
